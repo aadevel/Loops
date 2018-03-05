@@ -1,0 +1,4 @@
+#Tools for analyzing loops in protein structures
+
+- LoopClustering.py - From an ensemble of structures with variable loop positions, this determines the representative cluster for loop poses
+- LoopRMSD.py - Local and global RMSD for protein loops 
