@@ -14,7 +14,6 @@
 # Note: The clustering in this is based on global loop rmsd - ie. align nonloop and calculate rmsd of loop residues
 
 import sys,os
-sys.path.insert(0, '/home/aashish/Loops/lib-loops/python2.6/site-packages')
 
 import Bio
 import Bio.PDB
