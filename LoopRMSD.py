@@ -1,5 +1,5 @@
 #Clustering script for loop modeling results. works for multiple ranges
-#.A.
+#Author: Aashish Adhikari
 
 #Usage: python script.py arg1 arg2 arg3 arg4
 # arg1 is the pdb code xxxx (should have a file called xxxx.pdb in the folder that contains all the final pdb structures) 
@@ -15,6 +15,7 @@
 
 import sys,os
 
+#requires biopython
 import Bio
 import Bio.PDB
 import numpy
@@ -50,6 +51,7 @@ def set_atoms2(fixed, moving):
 native_file = sys.argv[1]
 pdt_file = sys.argv[2]
 
+#Define the boundary for loop residues
 inp2=open(sys.argv[3], "r")
 loopres=[]
 while 1:
@@ -81,7 +83,6 @@ structure2 = Bio.PDB.PDBParser().get_structure('others', pdt_file)
 ref_model=structure[0]
 
 nmodels=len(structure2)
-#mat=numpy.zeros((nmodels,nmodels))
 
 
 #This aligns all the structures (all but loop)
@@ -111,20 +112,10 @@ for j, alt_model in zip(range(0,nmodels), structure2) :
 		if ref_res.id[1] in loopres and dolocal:
 		    ref_atoms.append(ref_res['CA'])                
 		    alt_atoms.append(alt_res['CA'])
-#		else:
-#		    ref_atoms.append(ref_res['CA'])                
-#		    alt_atoms.append(alt_res['CA'])
 
-	#Align these paired atom lists:
+  #Align these paired atom lists:
    super_imposer = Bio.PDB.Superimposer()
    super_imposer.set_atoms(ref_atoms, alt_atoms)
-
-#	   if ref_model.id == alt_model.id :
-#		 print "Ignoring self self RMS"
-	#assert numpy.abs(super_imposer.rms) < 0.0000001
-	#assert numpy.max(numpy.abs(super_imposer.rotran[1])) < 0.000001
-	#assert numpy.max(numpy.abs(super_imposer.rotran[0]) - numpy.identity(3)) < 0.000001
-#   	   else :
    super_imposer.apply(alt_model.get_atoms())
    print "Native and Model %i - Align: %0.2f  RMSD: %0.2f" % (alt_model.id, super_imposer.rms, set_atoms2(ref_loop,alt_loop))
 
