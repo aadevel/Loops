@@ -1,18 +1,9 @@
-#Clustering script for loop modeling results. works for multiple ranges
-#Author: Aashish Adhikari
-
-#Usage: python script.py arg1 arg2 arg3 arg4
-# arg1 is the pdb code xxxx (should have a file called xxxx.pdb in the folder that contains all the final pdb structures) 
-# arg2 is the range file (relative to first res)
-# arg3 is the file containing the list of pdbs and energies
-# arg4 is the cutoff value to cut the tree
+#Calculates the RMSD between two loop regions 
 # 
-# arg3 is of the form:
-#			col1	 col2	  col3
-#			xxxx.pdb ligation dopepw
-#
-# Note: The clustering in this is based on global loop rmsd - ie. align nonloop and calculate rmsd of loop residues
-
+# arg1 is the native pdb file
+# arg2 is the predicted pdb file or a trajectory file
+# arg3 is a file with the boundary regions for the loop residues 
+# arg4 defines local (dolocoal) or global(doglobal) rmsd calculations
 import sys,os
 
 #requires biopython

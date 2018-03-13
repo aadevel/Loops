@@ -14,7 +14,6 @@
 # Note: The clustering in this is based on global loop rmsd - ie. align nonloop and calculate rmsd of loop residues
 
 import sys,os
-#sys.path.insert(0, '/home/aashish/Loops/lib-loops/python2.6/site-packages')
 
 import Bio
 import Bio.PDB
@@ -136,13 +135,6 @@ while 1:
 
 print " Loop Residues are: ", loopres
 
-#line = inp2.readline()
-#line=line.split()
-#pdddbs.append((str(line[0]),str(line[2])))
-#mini=int(line[0])
-#maxi=int(line[1])
-#print "MinI and MaxI are ", mini, maxi
-
 #This aligns all the structures (all but loop)
 ref_model=structure[0]
 print "Everything aligned to first model.."
@@ -185,9 +177,7 @@ for i, ref_model in zip(range(0,nmodels), structure):
 				    alt_loop.append(alt_res['CA'])
 
 		mat[i][j] = round(set_atoms2(ref_loop,alt_loop),2)
-#		loc.append(localrmsd(ref_loop, alt_loop))
 
-#pdb_out_filename= pdb_code +  str(i) + ".pdb" 
 #print "Saving aligned structure as PDB file %s" % pdb_out_filename
 io=Bio.PDB.PDBIO()
 #io.set_structure(structure)
