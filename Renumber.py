@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import sys
-#sys.path.insert(0, '/home/aashish/protlib2/lib/python')
 
 from Bio.PDB import *
 from Bio.PDB.Fold import *
